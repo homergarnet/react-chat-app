@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\templated-codes\\social-media-api\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|c:\\users\\homer\\onedrive\\documents\\sh software\\practice-react\\templated-codes\\social-media-api\\social-media-api\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|solutionrelative:social-media-api\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|c:\\users\\homer\\onedrive\\documents\\sh software\\practice-react\\templated-codes\\social-media-api\\social-media-api\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|solutionrelative:social-media-api\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|c:\\users\\homer\\onedrive\\documents\\sh software\\practice-react\\templated-codes\\social-media-api\\social-media-api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|solutionrelative:social-media-api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\templated-codes\\social-media-api\\social-media-api\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "social-media-api\\Hubs\\ChatHub.cs",
+              "ToolTip": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\templated-codes\\social-media-api\\social-media-api\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "social-media-api\\Hubs\\ChatHub.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAoAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-05T02:33:54.692Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\templated-codes\\social-media-api\\social-media-api\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "social-media-api\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\templated-codes\\social-media-api\\social-media-api\\appsettings.Development.json",
+              "RelativeToolTip": "social-media-api\\appsettings.Development.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-05T02:18:07.164Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\templated-codes\\social-media-api\\social-media-api\\Startup.cs",
+              "RelativeDocumentMoniker": "social-media-api\\Startup.cs",
+              "ToolTip": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\templated-codes\\social-media-api\\social-media-api\\Startup.cs",
+              "RelativeToolTip": "social-media-api\\Startup.cs",
+              "ViewState": "AQIAALAAAAAAAAAAAAAAwLgAAAAxAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-05T01:42:22.276Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

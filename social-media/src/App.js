@@ -2,6 +2,7 @@ import React from "react";
 import Chat from "./Chat";
 import "./App.css";
 import ConnectionStatus from "./components/ConnectionStatus";
+import YoutubeForm from "./components/YoutubeForm";
 
 const App = () => {
   return (
@@ -10,7 +11,8 @@ const App = () => {
         <h1>SignalR Chat</h1>
       </header>
       {/* <ConnectionStatus /> */}
-      <Chat />
+      <YoutubeForm />
+      {/* <Chat /> */}
     </div>
   );
 };

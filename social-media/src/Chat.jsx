@@ -34,13 +34,13 @@ const Chat = () => {
                     .catch(err => console.error(err));
 
                 newConnection.on('RoomInitialized', (roomId) => {
+                    //pull data from BE and set the messages state last offset(last30MessageIndex, lastMessageIndex)
                     console.log(`Room initialized: ${roomId}`);
                     // Optionally handle room initialization response
                 });
 
                 newConnection.on('ReceiveMessage', (user, message) => {
                     setMessages(messages => [...messages, { user, message }]);
-                    console.log("setMessages: ", messages)
                     scrollToBottom();
                 });
 

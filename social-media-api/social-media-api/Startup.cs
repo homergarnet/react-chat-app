@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using social_media_api.Hubs;
+using social_media_api.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,10 +56,10 @@ namespace social_media_api
             services.AddControllers();
             //SQL SERVER CONNECTION HERE
 
-            //services.AddD<Thesis_CrimeContext>(option =>
-            //{
-            //    option.UseSqlServer(Configuration.GetConnectionString("Thesis_Crime") ?? "");
-            //});
+            services.AddDbContext<ChatAppDemoContext>(option =>
+            {
+               option.UseSqlServer(Configuration.GetConnectionString("ChatAppDemo") ?? "");
+            });
 
             services.AddCors(options =>
             {

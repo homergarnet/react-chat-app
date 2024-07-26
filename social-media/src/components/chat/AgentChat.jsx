@@ -227,6 +227,8 @@ const AgentChat = () => {
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div className='row'>
                 <div className='col'>
                     <div className="card">
                         <div className="card-body chat-container">
@@ -280,7 +282,6 @@ const AgentChat = () => {
                     </div>
                 </div>
             </div>
-
         </div>
 
     );

@@ -68,7 +68,7 @@ const ClientChat = () => {
             .withAutomaticReconnect()
             .build();
 
-        setConnection(newConnection);
+        // setConnection(newConnection);
         console.log("new connection: ", newConnection);
         newConnection
             .start()
@@ -205,6 +205,7 @@ const ClientChat = () => {
     }, []);
 
     const sendMessage = async () => {
+
         if (connection && roomId) {
             try {
                 await connection.send('SendMessage', roomId, user, message);

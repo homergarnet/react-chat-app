@@ -203,7 +203,7 @@ const ClientChat = () => {
             alert('No connection to server yet.');
         }
     };
-    
+
     const sendMessage = async () => {
 
         if (connection && roomId) {
@@ -267,7 +267,7 @@ const ClientChat = () => {
                                 <div className="card">
                                     <div className="card-body chat-container">
                                         <div className="chat-messages mb-3" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-                                            {JSON.stringify(messages)}
+
                                             {messages.map((msg, index) => (
                                                 <div key={index} className="chat-message">
                                                     <strong>{msg.user}</strong>: {msg.message}

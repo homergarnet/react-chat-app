@@ -116,73 +116,79 @@ const AgentChat = () => {
             console.log("newwwwwwwwwww room ID: ", roomId)
             getWaitingByCsrList("", 1, 1000);
             setWaitingAccomodatedByChange(false);
-            const newConnection = new signalR.HubConnectionBuilder()
-                .withUrl("https://localhost:44321/chathub", {
-                    withCredentials: true,
-                    accessTokenFactory: () => {
-                        // Provide access token if authenticated
-                        return localStorage.getItem('accessToken');
-                    }
-                })
-                .withAutomaticReconnect()
-                .build();
-            // connections.push(newConnection);
-            setConnections(connections => [...connections, { newConnection }]);
-            console.log("new connection: ", newConnection)
-            newConnection.start()
-                .then(result => {
-                    console.log('Connected!');
-
-                    // Join the initial room
-                    newConnection.invoke('InitializeRoom', roomId)
-                        .catch(err => console.error(err));
-
-                    newConnection.on('RoomInitialized', (roomId) => {
-                        //pull data from BE and set the messages state last offset(last30MessageIndex, lastMessageIndex)
-                        console.log(`Room initialized: ${roomId}`);
-                        // Optionally handle room initialization response
-                    });
-
-                    newConnection.on('ReceiveMessage', (user, message) => {
-                        setMessages(messages => [...messages, { user, message }]);
-                        scrollToBottom();
-                    });
-
-                    newConnection.onclose(() => {
-                        // alert("Connection lost. Please try to reconnect.");
-                    });
-
-                    newConnection.onreconnecting(() => {
-                        console.log('Attempting to reconnect...');
-                    });
-
-                    newConnection.onreconnected(() => {
-                        console.log('Reconnected!');
-                        // Reinitialize room or restore state as needed
-                        newConnection.invoke('InitializeRoom', roomId)
-                            .catch(err => console.error(err));
-                    });
-                })
-                .catch(e => {
-                    console.log('Connection failed: ', e);
-                });
-
-            return () => {
-                if (newConnection) {
-                    newConnection.stop();
-                }
-            };
+            initializeConnection(roomId)
         }
 
     }, [waitingAccomodatedByChange]);
+    const initializeConnection = (roomId) => {
+        const newConnection = new signalR.HubConnectionBuilder()
+            .withUrl("https://localhost:44321/chathub", {
+                withCredentials: true,
+                accessTokenFactory: () => {
+                    // Provide access token if authenticated
+                    return localStorage.getItem('accessToken');
+                }
+            })
+            .withAutomaticReconnect()
+            .build();
+        // connections.push(newConnection);
+        setConnections(connections => [...connections, { newConnection }]);
+        console.log("new connection: ", newConnection)
+        newConnection.start()
+            .then(result => {
+                console.log('Connected!');
+                console.log('tryyyyyyyyyyyyyyy if connected naaaaaaaaa!');
 
+                // Join the initial room
+                newConnection.invoke('InitializeRoom', roomId)
+                    .catch(err => console.error(err));
+
+                newConnection.on('RoomInitialized', (roomId) => {
+                    //pull data from BE and set the messages state last offset(last30MessageIndex, lastMessageIndex)
+                    console.log(`Room initialized: ${roomId}`);
+                    // Optionally handle room initialization response
+                });
+
+                newConnection.on('ReceiveMessage', (user, message) => {
+                    setMessages(messages => [...messages, { user, message }]);
+                    scrollToBottom();
+                });
+
+                newConnection.onclose(() => {
+                    // alert("Connection lost. Please try to reconnect.");
+                });
+
+                newConnection.onreconnecting(() => {
+                    console.log('Attempting to reconnect...');
+                });
+
+                newConnection.onreconnected(() => {
+                    console.log('Reconnected!');
+                    // Reinitialize room or restore state as needed
+                    newConnection.invoke('InitializeRoom', roomId)
+                        .catch(err => console.error(err));
+                });
+            })
+            .catch(e => {
+                console.log('Connection failed: ', e);
+            });
+
+        return () => {
+            if (newConnection) {
+                newConnection.stop();
+            }
+        };
+    }
     const sendMessage = async (chatMessageCount, WlroomId) => {
 
         console.log("WlroomId: ", WlroomId);
+        console.log("connections: ", connections);
+        console.log("connections1: ", connections[0].newConnection);
 
-        if (connections[chatMessageCount] && WlroomId) {
+        if (connections[chatMessageCount].newConnection && WlroomId) {
+
             try {
-                await connections[chatMessageCount].send('SendMessage', WlroomId, user, message);
+                await connections[chatMessageCount].newConnection.send('SendMessage', WlroomId, user, message);
                 setMessage('');
             } catch (e) {
                 console.log(e);

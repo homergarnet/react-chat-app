@@ -7,6 +7,7 @@ namespace social_media_api.Services
     {
         string CreateWaitingList(WaitingListDTO waitingListReq);
         List<WaitingListDTO> GetWaitingList(string keyword, int page, int pageSize);
+        List<WaitingListDTO> GetWaitingListByCsrId(string keyword, int page, int pageSize, long userId);
         string UpdateWaitingListActiveStatus(WaitingListDTO waitingListReq);
     }
 }

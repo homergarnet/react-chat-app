@@ -6,6 +6,7 @@ using System;
 using Microsoft.Extensions.Configuration;
 using social_media_api.Services;
 using social_media_api.DTOS;
+using social_media_api.Models;
 
 namespace social_media_api.Hubs
 {
@@ -58,9 +59,6 @@ namespace social_media_api.Hubs
         public async Task AcceptWaitingMessage(string roomId, string customerName, string concern, string RWLMRoomId)
         {
             string connectionId = Context.ConnectionId;
-            WaitingListDTO waitingListDTO = new WaitingListDTO();
-            waitingListDTO.IsActive = false;
-            _iWaitingListService.UpdateWaitingListActiveStatus(waitingListDTO);
             // Broadcast message to all clients in the specified room
             await Clients.Group(roomId).SendAsync("ReceivedAcceptWaitingMessage", customerName, concern, RWLMRoomId);
         }

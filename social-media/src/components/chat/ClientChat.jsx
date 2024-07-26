@@ -95,7 +95,7 @@ const ClientChat = () => {
 
                         setLoading(false);
                         setIsClientConnected(true);
-
+                        chatRoomExecution(WLMRoomId);
                     } else {
 
 
@@ -131,21 +131,7 @@ const ClientChat = () => {
         };
     };
 
-    const sendWaitingListMessage = async (connection, WLMRoomId) => {
-
-        if (connection && waitingListRoomId) {
-            try {
-                await connection.send('SendWaitingListMessage', waitingListRoomId, customerName, concern, WLMRoomId);
-
-            } catch (e) {
-                console.log(e);
-            }
-        } else {
-            alert('No connection to server yet.');
-        }
-    };
-
-    useEffect(() => {
+    const chatRoomExecution = (WLMRoomId) => {
         const newConnection = new signalR.HubConnectionBuilder()
             .withUrl("https://localhost:44321/chathub", {
                 withCredentials: true,
@@ -164,12 +150,12 @@ const ClientChat = () => {
                 console.log('Connected!');
 
                 // Join the initial room
-                newConnection.invoke('InitializeRoom', roomId)
+                newConnection.invoke('InitializeRoom', WLMRoomId)
                     .catch(err => console.error(err));
 
-                newConnection.on('RoomInitialized', (roomId) => {
+                newConnection.on('RoomInitialized', (WLMRoomId) => {
                     //pull data from BE and set the messages state last offset(last30MessageIndex, lastMessageIndex)
-                    console.log(`Room initialized: ${roomId}`);
+                    console.log(`Room initialized: ${WLMRoomId}`);
                     // Optionally handle room initialization response
                 });
 
@@ -189,7 +175,7 @@ const ClientChat = () => {
                 newConnection.onreconnected(() => {
                     console.log('Reconnected!');
                     // Reinitialize room or restore state as needed
-                    newConnection.invoke('InitializeRoom', roomId)
+                    newConnection.invoke('InitializeRoom', WLMRoomId)
                         .catch(err => console.error(err));
                 });
             })
@@ -202,8 +188,22 @@ const ClientChat = () => {
                 newConnection.stop();
             }
         };
-    }, []);
+    }
 
+    const sendWaitingListMessage = async (connection, WLMRoomId) => {
+
+        if (connection && waitingListRoomId) {
+            try {
+                await connection.send('SendWaitingListMessage', waitingListRoomId, customerName, concern, WLMRoomId);
+
+            } catch (e) {
+                console.log(e);
+            }
+        } else {
+            alert('No connection to server yet.');
+        }
+    };
+    
     const sendMessage = async () => {
 
         if (connection && roomId) {

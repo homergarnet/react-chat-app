@@ -6,6 +6,7 @@ using System;
 using social_media_api.Library;
 using System.Text.Json;
 using social_media_api.DTOS;
+using Microsoft.AspNetCore.Authorization;
 
 namespace social_media_api.Controllers
 {
@@ -54,6 +55,42 @@ namespace social_media_api.Controllers
 
         }
 
+        [Authorize]
+        [HttpGet]
+        [Route("api/get-waitinglistbycsr")]
+        public IActionResult GetWaitingListByCsrId(
+            [FromQuery] string keyword, [FromQuery] int page = 1,
+            [FromQuery] int pageSize = 10
+        )
+        {
+
+            try
+            {
+                var userId = Convert.ToInt64(User.FindFirst("UserId").Value);
+                var getWaitingList = _iWaitingListService.GetWaitingListByCsrId(keyword, page, pageSize, userId);
+
+                return new ContentResult
+                {
+                    StatusCode = 200,
+                    ContentType = "application/json",
+                    Content = JsonSerializer.Serialize(getWaitingList)
+                };
+
+            }
+
+            catch (Exception ex)
+            {
+                return new ContentResult
+                {
+                    StatusCode = 500,
+                    ContentType = "text/html",
+                    Content = Commons.GetFormattedExceptionMessage(ex)
+                };
+            }
+
+        }
+
+        [Authorize]
         [HttpPut]
         [Route("api/update-waitinglist")]
         public IActionResult UpdateWaitingList(
@@ -64,7 +101,8 @@ namespace social_media_api.Controllers
 
             try
             {
-
+                var userId = Convert.ToInt64(User.FindFirst("UserId").Value);
+                waitingListReq.AccomodatedBy = userId;
                 var updateWaitingList = _iWaitingListService.UpdateWaitingListActiveStatus(waitingListReq);
 
                 return new ContentResult

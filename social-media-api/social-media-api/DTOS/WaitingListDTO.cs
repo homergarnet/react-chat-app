@@ -7,5 +7,8 @@
         public string Concern { get; set; }
         public string WlroomId { get; set; }
         public bool? IsActive { get; set; }
+        public long? AccomodatedBy { get; set; }
+        public bool? IsDone { get; set; }
+        public bool? IsOnline { get; set; }
     }
 }

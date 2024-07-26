@@ -1,6 +1,9 @@
 import create from "zustand";
 import axios from "axios";
 import * as APIHelpers from "./utils/helpers/APIHelpers";
+
+var token = localStorage.getItem("authToken");
+
 const useStore = create((set) => ({
   loading: false,
   data: null,
@@ -8,7 +11,8 @@ const useStore = create((set) => ({
   isClientConnected: false,
   isLogin: false,
   waitingList: null,
-
+  waitingAccomodatedByList: null,
+  waitingAccomodatedByChange: false,
   setLoading: (value) => {
     set({
       loading: value,
@@ -24,6 +28,24 @@ const useStore = create((set) => ({
   setIsLogin: (value) => {
     set({
       isLogin: value,
+    });
+  },
+
+  setWaitingList: (value) => {
+    set({
+      waitingList: value,
+    });
+  },
+
+  setWaitingAccomodatedByList: (value) => {
+    set({
+      setWaitingAccomodatedByList: value,
+    });
+  },
+
+  setWaitingAccomodatedByChange: (value) => {
+    set({
+      waitingAccomodatedByChange: value,
     });
   },
 
@@ -47,7 +69,20 @@ const useStore = create((set) => ({
       var url = `https://localhost:44321/api/get-waitinglist?keyword=${keyword}&page=${page}&pageSize=${pageSize}`;
       const response = await APIHelpers.GETWAITINGLIST(url);
       set({ waitingList: response.data });
+
       console.log("waitingList: ", response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  getWaitingByCsrList: async (keyword, page, pageSize) => {
+    try {
+      var url = `https://localhost:44321/api/get-waitinglistbycsr?keyword=${keyword}&page=${page}&pageSize=${pageSize}`;
+      const response = await APIHelpers.GETWAITINGBYCSRLIST(url, "", token);
+      set({ waitingAccomodatedByList: response.data });
+
+      console.log("waitingAccomodatedByList: ", response.data);
     } catch (error) {
       console.log(error);
     }
@@ -56,10 +91,14 @@ const useStore = create((set) => ({
   updateWaitingList: async (WLMRoomId, IsActive) => {
     try {
       var url = `https://localhost:44321/api/update-waitinglist`;
-      const response = await APIHelpers.UPDATEWAITINGLIST(url, {
-        WlroomId: WLMRoomId,
-        IsActive,
-      });
+      const response = await APIHelpers.UPDATEWAITINGLIST(
+        url,
+        {
+          WlroomId: WLMRoomId,
+          IsActive,
+        },
+        token
+      );
 
       console.log("updateWaitingList: ", response.data);
     } catch (error) {

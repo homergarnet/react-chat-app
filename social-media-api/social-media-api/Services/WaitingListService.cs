@@ -38,6 +38,8 @@ namespace social_media_api.Services
                 waitingList.Concern = waitingListReq.Concern;
                 waitingList.WlroomId = waitingListReq.WlroomId;
                 waitingList.IsActive =true;
+                waitingList.IsOnline =true;
+                waitingList.IsDone =false;
                 db.WaitingLists.Add(waitingList);
                 db.SaveChanges();
 
@@ -81,6 +83,39 @@ namespace social_media_api.Services
             return getWaitingList;
         }
 
+        public List<WaitingListDTO> GetWaitingListByCsrId(string keyword, int page, int pageSize, long userId)
+        {
+            IQueryable<WaitingList> query = db.WaitingLists.Where(z => z.IsDone == false && z.AccomodatedBy == userId);
+
+            List<WaitingListDTO> getWaitingList = new List<WaitingListDTO>();
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                query = query.Where(
+                    z => z.CustomerName.Contains(keyword) || z.Concern.Contains(keyword) ||
+                    z.WlroomId.Contains(keyword)
+                );
+            }
+
+            var waitingListRes = query
+
+            .Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            foreach (var waitingList in waitingListRes)
+            {
+
+                var waitingListDto = new WaitingListDTO();
+                waitingListDto.WaitingListId = waitingList.WaitingListId;
+                waitingListDto.CustomerName = waitingList.CustomerName;
+                waitingListDto.Concern = waitingList.Concern;
+                waitingListDto.WlroomId = waitingList.WlroomId;
+                waitingListDto.IsActive = true;
+                getWaitingList.Add(waitingListDto);
+
+            }
+
+            return getWaitingList;
+        }
+
         public string UpdateWaitingListActiveStatus(WaitingListDTO waitingListReq)
         {
             var hasWaitingList = db.WaitingLists.Any(z => z.WlroomId == waitingListReq.WlroomId);
@@ -89,6 +124,7 @@ namespace social_media_api.Services
 
                 var waitingList = db.WaitingLists.Where(z => z.WlroomId == waitingListReq.WlroomId).First();
                 waitingList.IsActive = waitingListReq.IsActive;
+                waitingList.AccomodatedBy = waitingListReq.AccomodatedBy;
                 db.SaveChanges();
 
             }

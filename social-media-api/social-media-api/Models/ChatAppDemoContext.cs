@@ -107,6 +107,11 @@ namespace social_media_api.Models
                     .HasMaxLength(255)
                     .IsUnicode(false)
                     .HasColumnName("WLRoomId");
+
+                entity.HasOne(d => d.AccomodatedByNavigation)
+                    .WithMany(p => p.WaitingLists)
+                    .HasForeignKey(d => d.AccomodatedBy)
+                    .HasConstraintName("FK_WaitingList_Users");
             });
 
             OnModelCreatingPartial(modelBuilder);

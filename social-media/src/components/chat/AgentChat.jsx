@@ -12,7 +12,20 @@ const AgentChat = () => {
 
     const [connection, setConnection] = useState(null);
     const [connections, setConnections] = useState([]);
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([
+        // {
+        //     id: 0,
+        //     message: [
+        //         { user: "Client1", message: "Hello" },
+        //     ]
+        // },
+        // {
+        //     id: 1,
+        //     message: [
+        //         { user: "Client2", message: "Hello" },
+        //     ]
+        // }
+    ]);
     const [concernList, setConcernList] = useState([]);
     const [user, setUser] = useState('');
     const [message, setMessage] = useState('');
@@ -149,8 +162,42 @@ const AgentChat = () => {
                     // Optionally handle room initialization response
                 });
 
-                newConnection.on('ReceiveMessage', (user, message) => {
-                    setMessages(messages => [...messages, { user, message }]);
+                newConnection.on('ReceiveMessage', (roomId, user, message) => {
+                    setMessages(prevMessages => {
+                        console.log("Current messages: ", prevMessages);
+
+                        const messageExists = prevMessages.some(msgObj => msgObj.id === roomId);
+
+                        if (messageExists) {
+
+
+                            return prevMessages.map((msgObj) => {
+                                if (msgObj.id === roomId) {
+                                    return {
+                                        ...msgObj,
+                                        message: [...msgObj.message, { user, message }]
+                                    };
+                                } else {
+                                    return msgObj;
+                                }
+                            });
+                        } else {
+
+
+                            const newMessageObject = {
+                                id: roomId,
+                                message: [
+                                    { user, message }
+                                ]
+                            };
+
+                            return [...prevMessages, newMessageObject];
+                        }
+                    });
+
+                    //first working code
+                    // setMessages(messages => [...messages, { user, message }]);
+                    // Ensure that the scroll happens after the state update
                     scrollToBottom();
                 });
 
@@ -262,8 +309,9 @@ const AgentChat = () => {
                     <div className='col'>
                         <div className="card">
                             <div className="card-body chat-container">
+
                                 <div className="chat-messages mb-3" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-                                    {messages.map((msg, index) => (
+                                    {messages[index] && messages[index].message.map((msg, index) => (
                                         <div key={index} className="chat-message">
                                             <strong>{msg.user}</strong>: {msg.message}
                                         </div>

@@ -160,7 +160,7 @@ const ClientChat = () => {
                     // Optionally handle room initialization response
                 });
 
-                newConnection.on('ReceiveMessage', (user, message) => {
+                newConnection.on('ReceiveMessage', (roomId, user, message) => {
                     setMessages(messages => [...messages, { user, message }]);
                     scrollToBottom();
                 });

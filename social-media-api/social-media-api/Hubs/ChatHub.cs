@@ -32,7 +32,7 @@ namespace social_media_api.Hubs
         {
             string connectionId = Context.ConnectionId;
             // Broadcast message to all clients in the specified room
-            await Clients.Group(roomId).SendAsync("ReceiveMessage", user, message);
+            await Clients.Group(roomId).SendAsync("ReceiveMessage",roomId, user, message);
         }
 
         // When a user accesses the chat and reloads the tab, this will run

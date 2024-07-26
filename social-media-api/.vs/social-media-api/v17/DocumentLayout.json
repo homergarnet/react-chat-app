@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|solutionrelative:social-media-api\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|c:\\users\\homer\\onedrive\\documents\\sh software\\practice-react\\react-chat-app\\social-media-api\\social-media-api\\hubs\\waitinglisthub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|solutionrelative:social-media-api\\hubs\\waitinglisthub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|c:\\users\\homer\\onedrive\\documents\\sh software\\practice-react\\react-chat-app\\social-media-api\\social-media-api\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0F1D630C-6227-4028-B46B-EB8941E78ED3}|social-media-api\\social-media-api.csproj|solutionrelative:social-media-api\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -18,20 +22,31 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "WaitingListHub.cs",
+              "DocumentMoniker": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\react-chat-app\\social-media-api\\social-media-api\\Hubs\\WaitingListHub.cs",
+              "RelativeDocumentMoniker": "social-media-api\\Hubs\\WaitingListHub.cs",
+              "ToolTip": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\react-chat-app\\social-media-api\\social-media-api\\Hubs\\WaitingListHub.cs",
+              "RelativeToolTip": "social-media-api\\Hubs\\WaitingListHub.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-26T07:41:32.273Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Startup.cs",
               "DocumentMoniker": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\react-chat-app\\social-media-api\\social-media-api\\Startup.cs",
               "RelativeDocumentMoniker": "social-media-api\\Startup.cs",
               "ToolTip": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\react-chat-app\\social-media-api\\social-media-api\\Startup.cs",
               "RelativeToolTip": "social-media-api\\Startup.cs",
-              "ViewState": "AQIAAJYAAAAAAAAAAAAAAMEAAAAPAAAA",
+              "ViewState": "AQIAALAAAAAAAAAAAAArwL0AAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T07:16:38.922Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-26T07:16:38.922Z"
             },
             {
               "$type": "Document",
@@ -41,7 +56,7 @@
               "RelativeDocumentMoniker": "social-media-api\\Hubs\\ChatHub.cs",
               "ToolTip": "C:\\Users\\homer\\OneDrive\\Documents\\SH Software\\practice-react\\react-chat-app\\social-media-api\\social-media-api\\Hubs\\ChatHub.cs",
               "RelativeToolTip": "social-media-api\\Hubs\\ChatHub.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAgwCgAAAA3AAAA",
+              "ViewState": "AQIAABsAAAAAAAAAAAAgwCMAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-26T07:13:25.819Z",
               "EditorCaption": ""

@@ -11,7 +11,7 @@ const ConnectionStatus = () => {
                 })
                 .withAutomaticReconnect()
                 .build();
-            alert(newConnection._connectionStarted);
+            // alert(newConnection._connectionStarted);
             setIsOnline(true);
         }
         const handleOffline = () => {
@@ -21,7 +21,7 @@ const ConnectionStatus = () => {
                 })
                 .withAutomaticReconnect()
                 .build();
-            alert(newConnection._connectionStarted);
+            // alert(newConnection._connectionStarted);
             setIsOnline(false)
         };
 

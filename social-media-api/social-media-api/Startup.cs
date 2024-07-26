@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using social_media_api.Hubs;
 using social_media_api.Models;
+using social_media_api.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -112,7 +113,9 @@ namespace social_media_api
             services.AddCors();
 
             //SERVICES
-            //services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IRoomService, RoomService>();
+            services.AddTransient<IWaitingListService, WaitingListService>();
             //services.AddTransient<ICompliantService, CompliantService>();
             //services.AddTransient<IAnnouncementService, AnnouncementService>();
             //services.AddTransient<ILocationService, LocationService>();
@@ -185,6 +188,7 @@ namespace social_media_api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapHub<ChatHub>("/chathub");
+                endpoints.MapHub<WaitingListHub>("/waitinglisthub");
                 endpoints.MapControllers();
 
             });

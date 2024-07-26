@@ -1,0 +1,8 @@
+.card-clickable {
+    cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card-clickable:hover {
+  transform: scale(1.05);
+}

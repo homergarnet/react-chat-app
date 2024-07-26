@@ -1,3 +1,6 @@
+----------------------------------------------------------------------------------------------------------------------------------------
+connectionId is different everytime user reload the page, or create a new tab and access InitializeRoom 
+----------------------------------------------------------------------------------------------------------------------------------------
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

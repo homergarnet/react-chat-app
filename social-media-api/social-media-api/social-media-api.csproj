@@ -7,6 +7,8 @@
 
 	<ItemGroup>
 
+		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
@@ -26,6 +28,8 @@
 
 	<ItemGroup>
 		<Folder Include="Models\" />
+		<Folder Include="db\" />
+		<Folder Include="Library\" />
 	</ItemGroup>
 
 </Project>

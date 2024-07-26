@@ -132,6 +132,7 @@ const ClientChat = () => {
     };
 
     const chatRoomExecution = (WLMRoomId) => {
+        setRoomId(WLMRoomId);
         const newConnection = new signalR.HubConnectionBuilder()
             .withUrl("https://localhost:44321/chathub", {
                 withCredentials: true,
@@ -205,7 +206,7 @@ const ClientChat = () => {
     };
 
     const sendMessage = async () => {
-
+        console.log("roomId: ", roomId);
         if (connection && roomId) {
             try {
                 await connection.send('SendMessage', roomId, user, message);

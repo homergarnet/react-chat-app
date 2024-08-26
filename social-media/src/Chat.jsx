@@ -10,6 +10,17 @@ const Chat = () => {
     const messagesEndRef = useRef(null);
 
     useEffect(() => {
+
+        //for secured hub
+        // const token = "yourToken"; 
+
+        // const newConnection = new signalR.HubConnectionBuilder()
+        //     .withUrl("https://localhost:44321/chathub", {
+        //         accessTokenFactory: () => token,
+        //         withCredentials: true
+        //     })
+        //     .withAutomaticReconnect()
+        //     .build();
         const newConnection = new signalR.HubConnectionBuilder()
             .withUrl("https://localhost:44321/chathub", {
                 withCredentials: true

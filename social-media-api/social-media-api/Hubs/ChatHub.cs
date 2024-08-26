@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 
 namespace social_media_api.Hubs
 {
+    //[Authorize]
     public class ChatHub : Hub
     {
         public async Task SendMessage(string user, string message)

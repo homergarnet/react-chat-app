@@ -36,6 +36,8 @@ namespace social_media_api
         {
 
             var Cors = Configuration.GetSection("Cors");
+            //if jwt is needed or signalr security
+            services.AddAuthorization();
             services.AddSignalR();
             services.AddMemoryCache();
             services.AddControllers()
@@ -99,7 +101,33 @@ namespace social_media_api
                             context.Response.Headers.Add("Token-Expired", "true");
                         }
                         return Task.CompletedTask;
+                    },
+                    //add this for secured hubs (signalr)
+                    //OnMessageReceived = context =>
+                    //{
+                    //    // Extract the access token from the query string for SignalR requests
+                    //    var accessToken = context.Request.Query["access_token"];
+
+                    //    // If the request is for the SignalR hub and contains a token, set it
+                    //    var path = context.HttpContext.Request.Path;
+                    //    if (!string.IsNullOrEmpty(accessToken) &&
+                    //        path.StartsWithSegments("/chathub"))
+                    //    {
+                    //        context.Token = accessToken;
+                    //    }
+                    //    return Task.CompletedTask;
+                    //},
+
+                    //for customize forbidden error
+                    OnChallenge = context =>
+                    {
+                        // Custom response for unauthorized access
+                        context.Response.StatusCode = 401;
+                        context.Response.ContentType = "application/json";
+                        var result = Newtonsoft.Json.JsonConvert.SerializeObject(new { error = "Unauthorized access. Please provide a valid token." });
+                        return context.Response.WriteAsync(result);
                     }
+
                 };
             });
             services.AddControllersWithViews()
@@ -182,6 +210,8 @@ namespace social_media_api
 
             app.UseEndpoints(endpoints =>
             {
+                //add this for secured hubs (signalr)
+                //endpoints.MapHub<ChatHub>("/chathub").RequireAuthorization();
                 endpoints.MapHub<ChatHub>("/chathub");
                 endpoints.MapControllers();
 

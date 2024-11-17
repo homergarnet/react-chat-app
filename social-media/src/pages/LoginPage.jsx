@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useAuthContext from 'store/auth/useAuthContext';
 
 const LoginPage = () => {
@@ -12,6 +12,7 @@ const LoginPage = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('123123Qq@');
     const navigate = useNavigate();
+    const location = useLocation();
     const onChangeUsername = (e) => {
         const newValue = e.target.value;
         var regex = regexBlackListedChars;
@@ -67,9 +68,14 @@ const LoginPage = () => {
         // Handle sign-in logic here
         let loginStatus = await getLoginStatus(username, password, "");
 
-        if(loginStatus == "login success") {
-            navigate('/chat');
-        } 
+        if (loginStatus == "login success") {
+            if (location?.state?.prevUrl) {
+                navigate(location?.state?.prevUrl);
+            } else {
+                navigate('/chat');
+            }
+
+        }
     };
 
     return (

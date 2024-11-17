@@ -1,5 +1,5 @@
 import { jwtDecode } from "jwt-decode";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 export const isTokenExpired = (token) => {
   try {
@@ -41,5 +41,11 @@ export const decodeToken = (token) => {
 };
 
 export const IsAuth = () => {
-  return isAuthenticated() ? <Outlet /> : <Navigate to="/login" />;
+  const location = useLocation();
+  // console.log("location: ", location);
+  return isAuthenticated() ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" state={{ prevUrl: location.pathname }} />
+  );
 };

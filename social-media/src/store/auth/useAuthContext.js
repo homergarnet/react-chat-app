@@ -4,7 +4,7 @@ export const useAuthContext = create((set, get) => ({
   username: "",
   password: "",
   authLoading: false,
-
+  jwtToken: localStorage.getItem("authToken"),
   regexBlackListedChars: /[~<>\\'"`]/,
 
   setUsername: (username) => set({ username }),

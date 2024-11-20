@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import useRedirect from 'hooks/useRedirect';
+import React, { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuthContext from 'store/auth/useAuthContext';
 
@@ -13,6 +14,8 @@ const LoginPage = () => {
     const [password, setPassword] = useState('123123Qq@');
     const navigate = useNavigate();
     const location = useLocation();
+    useRedirect();
+
     const onChangeUsername = (e) => {
         const newValue = e.target.value;
         var regex = regexBlackListedChars;

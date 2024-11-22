@@ -73,9 +73,11 @@ const LoginPage = () => {
 
         if (loginStatus == "login success") {
             if (location?.state?.prevUrl) {
-                navigate(location?.state?.prevUrl);
+                //replace: true will reload the whole page when you click the previous page of the browser button
+                navigate(location?.state?.prevUrl, { replace: true });
             } else {
-                navigate('/chat');
+                //replace: true will reload the whole page when you click the previous page of the browser button
+                navigate('/chat', { replace: true });
             }
 
         }

@@ -4,7 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAuthContext from "store/auth/useAuthContext";
 import { jwtDecode } from "jwt-decode";
 const useRedirect = () => {
-  const { jwtToken } = useAuthContext();
+  const { regexBlackListedChars, getLoginStatus, loginStatus, jwtToken } =
+    useAuthContext();
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
@@ -20,7 +21,7 @@ const useRedirect = () => {
         console.error("Invalid token:", err);
       }
     }
-  }, []);
+  }, [jwtToken, navigate, location]);
 };
 
 export default useRedirect;
